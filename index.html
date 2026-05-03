@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -12,26 +12,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ```
-:root {
-  --red:    #c0362a;
-  --orange: #d4621a;
-  --gold:   #c8900a;
-  --green:  #2a7a3a;
-  --bg:     #09090b;
-  --text:   #efefec;
-  --muted:  rgba(239,239,236,0.6);
-  --dim:    rgba(239,239,236,0.18);
-}
-
-html, body {
-  height: 100%;
-  -webkit-font-smoothing: antialiased;
+html {
+  background: #09090b !important;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: #09090b !important;
+  background-image: none;
+  color: #efefec;
+  font-family: 'IBM Plex Sans', Georgia, serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,42 +29,44 @@ body {
   padding: 3rem 2rem;
   position: relative;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Top gradient bar */
+/* Top color bar */
 .top-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--red), var(--orange), var(--gold), var(--green));
+  height: 3px;
+  background: linear-gradient(90deg, #c0362a, #d4621a, #c8900a, #2a7a3a);
   z-index: 50;
 }
 
-/* Subtle noise vignette */
-body::before {
-  content: '';
+/* Subtle red glow */
+.glow {
   position: fixed;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 40%, transparent 40%, rgba(0,0,0,0.55) 100%);
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: #c0362a;
+  opacity: 0.06;
+  filter: blur(120px);
+  top: -220px; left: -180px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Faint red glow top-left */
-body::after {
-  content: '';
+.glow-2 {
   position: fixed;
-  width: 500px; height: 500px;
+  width: 400px; height: 400px;
   border-radius: 50%;
-  background: var(--red);
+  background: #c8900a;
   opacity: 0.05;
   filter: blur(100px);
-  top: -180px; left: -140px;
+  bottom: -150px; right: -100px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Main layout */
+/* Main */
 .container {
   position: relative;
   z-index: 1;
@@ -89,34 +80,34 @@ body::after {
 
 /* Logo */
 .logo-wrap {
-  width: 200px;
+  width: 210px;
   margin-bottom: 3rem;
   opacity: 0;
-  animation: up 0.75s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: up 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 .logo-wrap svg { width: 100%; height: auto; display: block; }
 
 /* Tagline */
 .tagline {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Sans', Georgia, serif;
   font-weight: 300;
-  font-size: clamp(1rem, 2.4vw, 1.18rem);
-  color: var(--text);
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  color: #efefec;
   line-height: 1.65;
   margin-bottom: 3rem;
   opacity: 0;
-  animation: up 0.75s 0.22s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: up 0.8s 0.22s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
 /* Rule */
 .rule {
-  width: 40px;
+  width: 36px;
   height: 1px;
-  background: var(--gold);
-  opacity: 0.5;
+  background: #c8900a;
+  opacity: 0.45;
   margin: 0 auto 3rem;
   opacity: 0;
-  animation: up 0.75s 0.32s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: up 0.8s 0.32s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
 /* CTA */
@@ -126,14 +117,14 @@ body::after {
   align-items: center;
   gap: 1.6rem;
   opacity: 0;
-  animation: up 0.75s 0.42s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: up 0.8s 0.42s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
 .cta-text {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Sans', Georgia, serif;
   font-weight: 400;
   font-size: clamp(0.9rem, 2vw, 1rem);
-  color: var(--muted);
+  color: rgba(239,239,236,0.62);
   line-height: 1.7;
 }
 
@@ -143,13 +134,13 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: clamp(0.78rem, 1.8vw, 0.86rem);
   font-weight: 500;
   letter-spacing: 0.05em;
   text-decoration: none;
-  color: var(--bg);
-  background: var(--text);
+  color: #09090b;
+  background: #efefec;
   padding: 0.85rem 1.9rem;
   border-radius: 2px;
   overflow: hidden;
@@ -160,7 +151,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, var(--red), var(--orange), var(--gold));
+  background: linear-gradient(100deg, #c0362a, #d4621a, #c8900a);
   opacity: 0;
   transition: opacity 0.28s;
 }
@@ -173,27 +164,26 @@ body::after {
 .email-btn .arr { transition: transform 0.22s; }
 .email-btn:hover .arr { transform: translateX(4px); }
 
-/* Status indicator */
+/* Status */
 .status {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 0.66rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #5abf78;
-  margin-top: 1.4rem;
+  margin-top: 0.4rem;
 }
-
 .status-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
   background: #5abf78;
-  animation: pulse 2.4s ease-in-out infinite;
+  animation: blink 2.4s ease-in-out infinite;
 }
 
-@keyframes pulse {
+@keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
 }
@@ -207,22 +197,24 @@ body::after {
 .footer {
   position: fixed;
   bottom: 1.6rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: rgba(239,239,236,0.2);
   z-index: 1;
   opacity: 0;
-  animation: up 0.75s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: up 0.8s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 ```
 
   </style>
 </head>
-<body>
+<body style="background-color: #09090b !important;">
 
   <div class="top-bar"></div>
+  <div class="glow"></div>
+  <div class="glow-2"></div>
 
   <div class="container">
 
